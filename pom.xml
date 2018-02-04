@@ -1,0 +1,161 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cs.geotools</groupId>
+	<artifactId>geotools</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<profiles>
+		<!-- 开发环境 -->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
+				<log.level>debug</log.level>
+				<log.url>${catalina.home}/logs</log.url>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<!-- 生产环境 -->
+		<profile>
+			<id>pro</id>
+			<properties>
+				<env>pro</env>
+				<log.level>info</log.level>
+				<log.url>${catalina.home}/logs</log.url>
+			</properties>
+		</profile>
+	</profiles>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<server.port>80</server.port>
+		<servlet.version>3.1.0</servlet.version>
+		<junit.version>4.12</junit.version>
+
+		<spring.version>4.2.1.RELEASE</spring.version>
+		<spring-redis.version>1.2.2.RELEASE</spring-redis.version>
+		<aspectj.version>1.8.9</aspectj.version>
+		<jta.version>1.1</jta.version>
+		<quartz.version>2.2.1</quartz.version>
+		<mybatis.version>3.3.0</mybatis.version>
+		<mybatis-spring.version>1.2.3</mybatis-spring.version>
+		<freemarker.version>2.3.23</freemarker.version>
+		<druid.version>1.0.15</druid.version>
+		<mysql.version>5.1.36</mysql.version>
+		<fastjson.version>1.2.29</fastjson.version>
+		<xstream.version>1.4.8</xstream.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<slf4j.version>1.7.21</slf4j.version>
+		<logback.version>1.1.7</logback.version>
+		<jcl.version>1.7.21</jcl.version>
+		<mail.version>1.4.7</mail.version>
+		<poi.version>3.12</poi.version>
+		<jxl.version>2.6</jxl.version>
+		<commons-io.version>2.4</commons-io.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<jstl.version>1.2</jstl.version>
+		<jsp-api.version>2.2</jsp-api.version>
+		<activemq.version>5.13.3</activemq.version>
+		<hessian.version>4.0.38</hessian.version>
+		<dubbo.version>2.5.3</dubbo.version>
+		<zookeeper.version>0.1</zookeeper.version>
+		<netty.version>4.0.23.Final</netty.version>
+		<swagger.version>1.5.10</swagger.version>
+		<springfox.version>2.6.1</springfox.version>
+		<jackson.version>2.8.8</jackson.version>
+
+		<geotools.version>19-SNAPSHOT</geotools.version>
+		<amazonaws.version>1.11.269</amazonaws.version>
+	</properties>
+
+	<dependencies>
+		<!-- J2EE支持 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- 单元测试 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- IO操作 -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+
+		<!-- 文件上传所依赖的jar包 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+		
+		<dependency>
+  		  <groupId>com.amazonaws</groupId>
+		  <artifactId>aws-java-sdk-core</artifactId>
+		  <version>${amazonaws.version}</version>
+		</dependency>
+
+		<!-- Jstl支持 -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<!-- geotools -->
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-shapefile</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-swing</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<!-- geojson 插件 -->
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-geojson</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+	</dependencies>
+	<!-- 阿里云镜像 -->
+	<repositories>
+		<repository>
+			<id>nexus-aliyun</id>
+			<name>Nexus Aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net repository</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>osgeo</id>
+			<name>Open Source Geospatial Foundation Repository</name>
+			<url>http://download.osgeo.org/webdav/geotools/</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>boundless</id>
+			<name>Boundless Maven Repository</name>
+			<url>http://repo.boundlessgeo.com/main</url>
+		</repository>
+	</repositories>
+</project>
